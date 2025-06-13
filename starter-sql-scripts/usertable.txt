@@ -1,0 +1,1 @@
+Need to create a user and a student_tracker table before running this program

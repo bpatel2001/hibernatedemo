@@ -5,4 +5,6 @@ import com.bpatel2001.hibernatedemo.entity.Student;
 public interface StudentDAO {
 
     void save(Student theStudent);
+
+    Student findByID(Integer Id);
 }

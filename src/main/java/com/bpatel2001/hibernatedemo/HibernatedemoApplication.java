@@ -20,8 +20,30 @@ public class HibernatedemoApplication {
 //		Java Lambda Expression
 		return runner -> {
 //			createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+//			createMultipleStudents(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		//Create a student object
+		System.out.println("Creating a new student object...");
+		Student tempStudent = new Student("Bruh", "Patel", "bruh@gmail.com");
+
+		// Save the student
+		System.out.println("Saving the student...");
+		studentDAO.save(tempStudent);
+
+		// Display ID of the saved student
+		int theId = tempStudent.getId();
+		System.out.println("Saved student. Generated id: " + theId);
+
+		// Retrieve student based on the ID: Primary key;
+		System.out.println("Retrieving student with id " + theId);
+		Student myStudent = studentDAO.findByID(theId);
+
+		// Display Student
+		System.out.println("Found the student: " + myStudent);
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
