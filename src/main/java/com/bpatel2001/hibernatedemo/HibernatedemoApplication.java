@@ -19,23 +19,45 @@ public class HibernatedemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 //		Java Lambda Expression
 		return runner -> {
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+			createMultipleStudents(studentDAO);
 		};
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+//		Create multiple students
+		System.out.println("Creating 4 new student objects...");
+		Student tempStudent1 = new Student("Paul", "Doe", "paul@gmail.com");
+		Student tempStudent2 = new Student("John", "Doe", "john@gmail.com");
+		Student tempStudent3 = new Student("Bhavik", "Doe", "bhavik@gmail.com");
+		Student tempStudent4 = new Student("Jane", "Doe", "jane@gmail.com");
+
+//		Save the student objects
+		System.out.println("Saving the students...");
+		studentDAO.save(tempStudent1);
+		studentDAO.save(tempStudent2);
+		studentDAO.save(tempStudent3);
+		studentDAO.save(tempStudent4);
+
+//		Display ID of saved students
+		System.out.println("Saved student 1. Generated ID: " + tempStudent1.getId());
+		System.out.println("Saved student 2. Generated ID: " + tempStudent2.getId());
+		System.out.println("Saved student 3. Generated ID: " + tempStudent3.getId());
+		System.out.println("Saved student 4. Generated ID: " + tempStudent4.getId());
+
+
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
 //		Create the student object
-
 		System.out.println("Creating new student object...");
 		Student tempStudent = new Student("Paul", "Doe", "paul@gmail.com");
 
 //		Save the student object
-
 		System.out.println("Saving the student...");
 		studentDAO.save(tempStudent);
 
 //		Display ID of the saved student
-
 		System.out.println("Saved student. Generated ID: " + tempStudent.getId());
 	}
 }
