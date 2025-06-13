@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @SpringBootApplication
@@ -22,12 +23,30 @@ public class HibernatedemoApplication {
 //		Java Lambda Expression
 		return runner -> {
 //			createStudent(studentDAO);
-//			createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 //			readStudent(studentDAO);
 //			queryForStudents(studentDAO);
 //			queryForStudentsByLastName(studentDAO);
-			updateStudent(studentDAO);
+//			updateStudent(studentDAO);
+//			deleteStudent(studentDAO);
+//			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students");
+
+		int numRowsDelete = studentDAO.deleteAll();
+
+		System.out.println("Deleted row count: " + numRowsDelete);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int studentId = 2;
+
+		System.out.println("Deleting student id: " + studentId);
+
+		studentDAO.delete(studentId);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
