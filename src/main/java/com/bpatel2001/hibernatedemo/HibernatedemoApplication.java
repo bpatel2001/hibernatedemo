@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class HibernatedemoApplication {
 
@@ -21,28 +23,39 @@ public class HibernatedemoApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 //			createMultipleStudents(studentDAO);
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+			queryForStudents(studentDAO);
 		};
 	}
 
+	private void queryForStudents(StudentDAO studentDAO) {
+//		Get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+//		Display list of students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
 	private void readStudent(StudentDAO studentDAO) {
-		//Create a student object
+//		Create a student object
 		System.out.println("Creating a new student object...");
 		Student tempStudent = new Student("Bruh", "Patel", "bruh@gmail.com");
 
-		// Save the student
+//		Save the student
 		System.out.println("Saving the student...");
 		studentDAO.save(tempStudent);
 
-		// Display ID of the saved student
+//		Display ID of the saved student
 		int theId = tempStudent.getId();
 		System.out.println("Saved student. Generated id: " + theId);
 
-		// Retrieve student based on the ID: Primary key;
+//		Retrieve student based on the ID: Primary key;
 		System.out.println("Retrieving student with id " + theId);
 		Student myStudent = studentDAO.findByID(theId);
 
-		// Display Student
+//		Display Student
 		System.out.println("Found the student: " + myStudent);
 	}
 
