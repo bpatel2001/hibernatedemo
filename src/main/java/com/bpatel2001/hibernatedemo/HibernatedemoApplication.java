@@ -24,8 +24,21 @@ public class HibernatedemoApplication {
 //			createStudent(studentDAO);
 //			createMultipleStudents(studentDAO);
 //			readStudent(studentDAO);
-			queryForStudents(studentDAO);
+//			queryForStudents(studentDAO);
+			queryForStudentsByLastName(studentDAO);
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+//		Get a list of students
+
+		List<Student> theStudents = studentDAO.findByLastName("Doe");
+
+//		Display list of students
+		for(Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
